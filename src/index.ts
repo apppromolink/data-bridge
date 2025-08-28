@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
 
-import { PORT } from './configs/enviroment.config';
+import { HOST, PORT } from './configs/enviroment.config';
 import GrabberRoutes from './routes/grabber.route';
 
 const fastify = Fastify({ logger: true });
@@ -13,7 +13,8 @@ fastify.get('/', async () => ({ message: 'Hello World' }));
 
 const start = async () => {
   try {
-    await fastify.listen({ port: PORT });
+    await fastify.listen({ port: PORT, host: HOST });
+
     console.log(`Server running at http://localhost:${PORT}`);
   } catch (err) {
     fastify.log.error(err);
